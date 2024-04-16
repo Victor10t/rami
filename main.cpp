@@ -1,6 +1,1 @@
-#include <iostream>
-#include "carte.cpp"
-
-int main(){
-    return 0;
-}
+#include "main.h"
