@@ -3,7 +3,8 @@
 
 struct carte{
     int valeur;
-    std::string couleur;
+    int couleur;
+    carte * tab_match;
 };
 
-void init(carte & c);
+void init_tab_match(carte & c);
