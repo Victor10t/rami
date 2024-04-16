@@ -19,3 +19,4 @@ void init_tab_match(carte & c){
     c3.valeur = c.valeur - 1;
     c.tab_match[4] = c3;
 }
+
