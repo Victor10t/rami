@@ -1,12 +1,14 @@
-#include "carte.cpp"
-#include "main.cpp"
+#pragma once
+#include "carte.h"
+#include "main.h"
+#include <array>
 
-struct maillon{
-    carte c;
-    maillon * suiv;
+struct pioche{
+    carte c[104];
 };
-using pioche = maillon *;
 
-/*pioche melange(pioche & p);
-void distribue(pioche & p, main & m);
-carte tirer(pioche & p, main & m);*/
+void generer_jeu(pioche & p);
+void melange(pioche & p);
+void distribue(int nb_joueur, pioche & p);
+/*
+carte tirer(pioche & p, hand & m);*/

@@ -1,2 +1,8 @@
+#pragma once
+#include "carte.h"
 
-using main = carte *;
+struct hand{
+    carte c[15];
+};
+
+
