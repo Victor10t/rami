@@ -49,4 +49,3 @@ void distribue(int nb_joueurs, pioche & p){
         }
     }
 }
-
