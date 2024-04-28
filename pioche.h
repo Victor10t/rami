@@ -8,7 +8,6 @@ struct pioche{
 };
 
 void generer_jeu(pioche & p);
-void melange(pioche & p);
-void distribue(int nb_joueur, pioche & p);
+hand * distribue(int nb_joueurs, pioche & p);
 /*
 carte tirer(pioche & p, hand & m);*/

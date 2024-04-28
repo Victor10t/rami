@@ -2,7 +2,9 @@
 #include "carte.h"
 
 struct hand{
-    carte c[15];
+    carte c[14];
 };
 
-void organiser_main(hand & h);
+void affiche_toutes_mains(int nb_joueurs, hand * ens_main);
+void affiche_une_main(int num_joueur, hand * ens_main);
+

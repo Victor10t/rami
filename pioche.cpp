@@ -10,6 +10,7 @@ void generer_jeu(pioche & p){
             carte c_actu;
             c_actu.couleur = i;
             c_actu.valeur = j;
+            c_actu.verif_d = true;
             p.c[n] = c_actu;
             p.c[n+1] = c_actu;
             n = n + 2;
@@ -21,31 +22,18 @@ void generer_jeu(pioche & p){
     }*/
 }
 
-void melange(pioche & p){
-    for(int i = 0; i < 104; ++i){
-        int a = rand() % 104;
-        carte z = p.c[i]; 
-        p.c[i] = p.c[a]; 
-        p.c[a] = z;
+hand * distribue(int nb_joueurs, pioche & p){
+    hand * ens_main = new hand[nb_joueurs];
+    for(int i = 0; i < nb_joueurs; ++i){
+        for(int j = 0; j < 14; ++j){
+            int a = rand() % 104;
+            while(p.c[a].verif_d != true){
+                a = rand() % 104;
+            }
+            ens_main[i].c[j] = p.c[a];
+            p.c[a].verif_d = false;
+        }
     }
-    /*std::cout << "\nPioche mélangée : \n";
-    for(int i = 0; i < 104; ++i){
-        std::cout << p.c[i].valeur << " de " << p.c[i].couleur << " | ";
-    }*/
+    return ens_main;
 }
 
-void distribue(int nb_joueurs, pioche & p){
-	hand * ens_main = new hand[nb_joueurs];
-	for(int i = 0; i < 14; ++i){
-        for(int j = 0; j < nb_joueurs; ++j){
-            ens_main[j].c[i] = p.c[j + i*nb_joueurs];
-        }
-    }
-    std::cout << "Ensemble de main : ";
-    for(int i = 0; i < nb_joueurs; ++i){
-        std::cout << "\nMain n°" << i << "\n";
-        for(int j = 0; j < 14; ++j){
-            std::cout << ens_main[i].c[j].valeur << " de " << ens_main[i].c[j].couleur << " | ";
-        }
-    }
-}
