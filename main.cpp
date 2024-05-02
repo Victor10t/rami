@@ -1,5 +1,6 @@
 #include "carte.h"
 #include "pioche.h"
+#include "main.h"
 #include <iostream>
 
 
@@ -17,4 +18,13 @@ void affiche_une_main(int num_joueur, hand * ens_main){
     for(int i = 0; i < 14; ++i){
         std::cout << ens_main[num_joueur-1].c[i].valeur << " de " << ens_main[num_joueur-1].c[i].couleur << " | ";
     }
+}
+
+void tirer(hand & main, pioche & p1){
+    int a = rand() % 104;
+    while(p1.c[a].verif_d != true){
+        a = rand() % 104;
+    }
+    main.c[14] = p1.c[a];
+    p1.c[a].verif_d = false;
 }

@@ -2,9 +2,9 @@
 #include "carte.h"
 
 struct hand{
-    carte c[14];
+    carte c[15];
 };
 
 void affiche_toutes_mains(int nb_joueurs, hand * ens_main);
 void affiche_une_main(int num_joueur, hand * ens_main);
-
+void tirer(hand & ens_main, pioche & p1);
