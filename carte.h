@@ -3,9 +3,9 @@
 
 struct carte{
     int valeur;
-    int couleur;
-    carte * tab_match;
+    std::string couleur;
     bool verif_d;
+    carte * tab_match;
 };
 
-void init_tab_match(carte & c);
+/*void init_tab_match(carte & c);*/

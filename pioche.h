@@ -9,5 +9,4 @@ struct pioche{
 
 void generer_jeu(pioche & p);
 hand * distribue(int nb_joueurs, pioche & p);
-/*
-carte tirer(pioche & p, hand & m);*/
+void tirer(hand & ens_main, pioche & p1);

@@ -2,13 +2,15 @@
 #include "carte.h"
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 void generer_jeu(pioche & p){
+    std::string couleur[] = {"♥", "♦", "♠", "♣"};
     int n = 0;
     for(int i = 0; i < 4; ++i){
         for(int j = 1; j < 14; ++j){
             carte c_actu;
-            c_actu.couleur = i;
+            c_actu.couleur = couleur[i];
             c_actu.valeur = j;
             c_actu.verif_d = true;
             p.c[n] = c_actu;
@@ -37,3 +39,11 @@ hand * distribue(int nb_joueurs, pioche & p){
     return ens_main;
 }
 
+void tirer(hand & main, pioche & p1){
+    int a = rand() % 104;
+    while(p1.c[a].verif_d != true){
+        a = rand() % 104;
+    }
+    main.c[14] = p1.c[a];
+    p1.c[a].verif_d = false;
+}

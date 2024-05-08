@@ -2,29 +2,28 @@
 #include "pioche.h"
 #include "main.h"
 #include <iostream>
+#include <array>
 
 
 void affiche_toutes_mains(int nb_joueurs, hand * ens_main){
     for(int i = 0; i < nb_joueurs; ++i){
         std::cout << "\n Main n° " << i+1 << "\n";
         for(int j = 0; j < 14; ++j){
-            std::cout << ens_main[i].c[j].valeur << " de " << ens_main[i].c[j].couleur << " | ";
+            std::cout << "(" << j << ") " << ens_main[i].c[j].valeur << " " << ens_main[i].c[j].couleur << " | ";
         }
     }
 }
 
-void affiche_une_main(int num_joueur, hand * ens_main){
-    std::cout << "\n Joueur n° " << num_joueur << "\n";
+void affiche_une_main(int num_joueur, hand main){
     for(int i = 0; i < 14; ++i){
-        std::cout << ens_main[num_joueur-1].c[i].valeur << " de " << ens_main[num_joueur-1].c[i].couleur << " | ";
+        std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
     }
 }
 
-void tirer(hand & main, pioche & p1){
-    int a = rand() % 104;
-    while(p1.c[a].verif_d != true){
-        a = rand() % 104;
+void affiche_une_main_complete(int num_joueur, hand main){
+    for(int i = 0; i < 14; ++i){
+        std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
     }
-    main.c[14] = p1.c[a];
-    p1.c[a].verif_d = false;
+    std::cout << "(14) " << main.c[14].valeur << " " << main.c[14].couleur << " | \n";
 }
+

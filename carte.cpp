@@ -1,6 +1,6 @@
 #include "carte.h"
 
-void init_tab_match(carte & c){
+/*void init_tab_match(carte & c){
     for(int i = 1; i < 4; ++i){
         carte c1;
         c1.valeur = c.valeur;
@@ -18,5 +18,5 @@ void init_tab_match(carte & c){
     c3.couleur = c.couleur;
     c3.valeur = c.valeur - 1;
     c.tab_match[4] = c3;
-}
+}*/
 
