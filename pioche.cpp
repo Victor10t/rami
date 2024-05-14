@@ -26,7 +26,7 @@ void generer_jeu(pioche & p){
 
 hand * distribue(int nb_joueurs, pioche & p){
     hand * ens_main = new hand[nb_joueurs];
-    for(int i = 0; i < nb_joueurs; ++i){
+    for(int i = 0; i < nb_joueurs; ++i){  
         for(int j = 0; j < 14; ++j){
             int a = rand() % 104;
             while(p.c[a].verif_d != true){

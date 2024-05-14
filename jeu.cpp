@@ -21,6 +21,7 @@ int main(){
         std::cout << "\nTour " << i+1 << " \n";
         for(int j = 0; j < n; ++j){
             std::cout << "\nJoueur " << j+1 << " :\n";
+            store_combinations(ens_main[j]);
             affiche_une_main(j+1, ens_main[j]);
             if(est_vide(def) == false){
                 std::cout << "\n\nEntrez d pour prendre la carte de la défausse ( ";
