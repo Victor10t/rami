@@ -5,7 +5,7 @@ struct carte{
     int valeur;
     std::string couleur;
     bool verif_d;
-    carte * tab_match;
+    bool use;
 };
 
 /*void init_tab_match(carte & c);*/
