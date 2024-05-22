@@ -32,8 +32,9 @@ int main(){
             std::cin >> choix;
             if(choix == "d") prendre_defausse(ens_main[j], def);
             else tirer(ens_main[j], p1);
-            affiche_une_main_complete(j+1, ens_main[j]);
             std::cout << "Entrez le n° de la carte que vous voulez defausser (0...14) :\n";
+            store_combinations(ens_main[j]);
+            affiche_une_main_complete(j+1, ens_main[j]);
             std::cin >> num_carte;
             mettre_defausse(ens_main[j], num_carte, def);
         }

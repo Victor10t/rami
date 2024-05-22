@@ -161,10 +161,10 @@ tri organiser_main(hand & main){
             }
         }
     }
-    while(check_paire(main) == true){
+    while(check_paire(main) == true){ 
         trier_main(main);
         for(int i = 0; i < 13; ++i){
-            if(main.c[i].valeur == main.c[i+1].valeur){
+            if(main.c[i].valeur == main.c[i+1].valeur){ 
                 for(int j = 0; j < 2; ++j){
                     tri.presque_comb[tri.taille_b].c[j] = main.c[i+j];
                     main.c[i].use = true;
