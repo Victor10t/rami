@@ -25,15 +25,16 @@ struct tri {
 };
 
 void affiche_toutes_mains(int nb_joueurs, hand * ens_main);
-void affiche_une_main(hand main);
-void affiche_une_main_complete(tri tri, hand main);
+void affiche_une_main(tri tri, hand & main);
+void affiche_une_main_complete(tri tri, hand & main);
 void echange(hand & main, int x, int y);
 void trier_main(hand & main);
-bool check_brelan(hand main);
+bool check_brelan(tri tri);
 bool check_carre(hand main);
 bool check_suite(hand main);
 bool check_paire_suite(hand main);
 bool check_paire(hand main);
+void trier_main_14 (hand & main);
 tri organiser_main(hand &main);
 
 

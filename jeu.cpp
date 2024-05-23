@@ -21,8 +21,9 @@ int main(){
         std::cout << "\nTour " << i+1 << " \n";
         for(int j = 0; j < n; ++j){
             std::cout << "\nJoueur " << j+1 << " :\n";
+            trier_main(ens_main[j]);
             tri tab_tri = organiser_main(ens_main[j]);
-            affiche_une_main(ens_main[j]);
+            affiche_une_main(tab_tri, ens_main[j]);
             if(est_vide(def) == false){
                 std::cout << "\n\nEntrez d pour prendre la carte de la défausse ( ";
                 affiche_def(def);
@@ -32,6 +33,8 @@ int main(){
             std::cin >> choix;
             if(choix == "d") prendre_defausse(ens_main[j], def);
             else tirer(ens_main[j], p1);
+            trier_main_14(ens_main[j]);
+            tab_tri = organiser_main(ens_main[j]);
             affiche_une_main_complete(tab_tri, ens_main[j]);
             std::cout << "Entrez le n° de la carte que vous voulez defausser (0...14) :\n";
             std::cin >> num_carte;
