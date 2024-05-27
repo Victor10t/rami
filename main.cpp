@@ -312,3 +312,22 @@ tri organiser_main(hand &main){
     return tri;
 }
 
+bool gagne14(hand main, tri tri){
+    if(tri.taille_b == 0){
+        for(int i = 0; i < 14; ++i){
+            if(main.c[i].use == false) return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+bool gagne15(hand main, tri tri){
+    if(tri.taille_b == 0){
+        for(int i = 0; i < 15; ++i){
+            if(main.c[i].use == false) return false;
+        }
+        return true;
+    }
+    return false;
+}

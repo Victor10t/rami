@@ -10,7 +10,7 @@ void prendre_defausse(hand & main, defausse & def){
         defausse p = def;
         def = def->suiv;
         delete p;
-        std::cout << "Le "<< main.c[14].valeur << " de " << main.c[14].couleur << " a été ajouté à votre main";
+        std::cout << "Le "<< main.c[14].valeur << " de " << main.c[14].couleur << " a été ajouté à votre main\n";
     }
 }
 

@@ -37,6 +37,6 @@ bool check_paire_suite(hand main);
 bool check_paire(hand main);
 void trier_main_14 (hand & main);
 tri organiser_main(hand &main);
-bool gagne_14(hand main, tri tri);
-bool gagne_15(hand main, tri tri);
+bool gagne14(hand main, tri tri);
+bool gagne15(hand main, tri tri);
 
