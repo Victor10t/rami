@@ -6,8 +6,8 @@
 
 int main(){
     pioche p1;
-    defausse def;
-    int n, num_carte;
+    defausse def = nullptr;
+    int n, num_carte, nb_manche;
     std::string choix;
     generer_jeu(p1);
     do{
@@ -16,8 +16,9 @@ int main(){
     }
     while(n > 6 or n < 2);
     hand * ens_main = distribue(n, p1);
-    
-    for(int i = 0; i < 10; i++){
+    std::cout << "Nombre de manches : \n";
+    std::cin >> nb_manche;
+    for(int i = 0; i < nb_manche; i++){
         std::cout << "\nTour " << i+1 << " \n";
         for(int j = 0; j < n; ++j){
             std::cout << "\nJoueur " << j+1 << " :\n";
@@ -38,17 +39,11 @@ int main(){
             affiche_une_main_complete(tab_tri, ens_main[j]);
             std::cout << "Entrez le n° de la carte que vous voulez defausser (0...14) :\n";
             std::cin >> num_carte;
+            while(num_carte > 14 or num_carte < 0){
+                std::cout << "Erreur, le chiffre doit être entre 0 et 14";
+            }
             mettre_defausse(ens_main[j], num_carte, def);
         }
     }
-
-
-    /*affiche_toutes_mains(n, ens_main);
-    tirer(ens_main[0], p1);
-    affiche_une_main_complete(1, ens_main[0]);
-    mettre_defausse(ens_main[0], 2, def);
-    affiche_une_main(1, ens_main[0]);
-    prendre_defausse(ens_main[1], def);
-    affiche_une_main_complete(2, ens_main[1]);*/
     return 0;
 }

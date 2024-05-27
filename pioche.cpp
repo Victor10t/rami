@@ -46,4 +46,5 @@ void tirer(hand & main, pioche & p1){
     }
     main.c[14] = p1.c[a];
     p1.c[a].verif_d = false;
+    std::cout << "Vous avez pioché le " << main.c[14].valeur << " de " << main.c[14].couleur << "\n";
 }

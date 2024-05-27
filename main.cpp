@@ -14,14 +14,14 @@ void affiche_toutes_mains(int nb_joueurs, hand * ens_main){
     }
 }
 
-void affiche_une_main(tri tri, hand & main){
+void affiche_une_main(tri tri, hand &main){
     for(int i = 0; i < 14; ++i){
         std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
     }
     std::cout << "\n Tab combinaison :\n";
     for(int i = 0; i < tri.taille_a; ++i){
-        for(int j = 0; j < 4; ++j){
-            if(tri.comb_f[i].c[j].valeur != 0) std::cout << tri.comb_f[i].c[j].valeur << " " << tri.comb_f[i].c[j].couleur << " | ";
+        for(int j = 0; j < tri.comb_f[i].taille_c; ++j){
+            std::cout << tri.comb_f[i].c[j].valeur << " " << tri.comb_f[i].c[j].couleur << " | ";
         }
         std::cout << std::endl;
     }
@@ -45,14 +45,17 @@ void affiche_une_main(tri tri, hand & main){
     }
 }
 
+
+
 void affiche_une_main_complete(tri tri, hand & main){
     for(int i = 0; i < 15; ++i){
         std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
     }
     std::cout << "\n Tab combinaison :\n";
     for(int i = 0; i < tri.taille_a; ++i){
-        for(int j = 0; j < 10; ++j){
-            if(tri.comb_f[i].c[j].valeur != 0) std::cout << tri.comb_f[i].c[j].valeur << " " << tri.comb_f[i].c[j].couleur << " | ";
+        std::cout << "\n taille_c : " << tri.comb_f[i].taille_c << "\n";
+        for(int j = 0; j < tri.comb_f[i].taille_c; ++j){
+            std::cout << tri.comb_f[i].c[j].valeur << " " << tri.comb_f[i].c[j].couleur << " | ";
         }
         std::cout << std::endl;
     }
@@ -107,13 +110,6 @@ void trier_main_14 (hand & main)
 	}
 }
 
-/*bool check_brelan(tri tri){
-    for(int i = 0; i < 5; i++){
-        if(tri.non_comb[i].valeur == tri.non_comb[i+1].valeur && tri.non_comb[i].valeur == tri.non_comb[i+2].valeur) return true;
-    }
-    return false;
-}*/
-
 bool check_brelan(hand main){
     for(int i = 0; i < 14; ++i){
         int count = 1;
@@ -131,26 +127,10 @@ bool check_brelan(hand main){
     return false;
 }
 
-
-/*bool check_brelan(hand main)
-{
-    for(int i=0; i<14; ++i){
-        for(int j=i+1; j<14; ++j){
-            for(int k=j+1; k<14; ++k){
-                if(main.c[i].valeur == main.c[j].valeur && main.c[i].valeur == main.c[k].valeur
-                && main.c[i].couleur != main.c[j].couleur && main.c[i].couleur != main.c[k].couleur && main.c[j].couleur != main.c[k].couleur){
-                return true;
-                }
-            }
-        }
-    }
-    return false;
-}*/
-
 bool check_carre(hand main){
-    for(int i = 0; i <= 14; ++i){
+    for(int i = 0; i < 14; ++i){
         int count = 1;
-        for(int j = i+1; j <= 15; ++j){
+        for(int j = i+1; j < 15; ++j){
             if(main.c[i].use == false && main.c[j].valeur){
                 if(main.c[i].valeur == main.c[j].valeur && main.c[i].couleur != main.c[j].couleur){
                     count++;
@@ -218,8 +198,12 @@ bool check_paire(hand main){
 tri organiser_main(hand &main){
     trier_main(main);
     tri tri;
-    tri.taille_a = 0; tri.taille_b = 0; int index = 0;
-    while(check_carre(main) == true){
+    tri.taille_a = 0;
+    tri.taille_b = 0;
+    int index = 0;
+
+    // Vérifier et stocker les carrés
+    while(check_carre(main)){
         trier_main(main);
         for(int i = 0; i < 12; ++i){
             if(main.c[i].use == false && main.c[i+1].use == false && main.c[i+2].use == false && main.c[i+3].use == false){
@@ -229,19 +213,22 @@ tri organiser_main(hand &main){
                 && main.c[i].couleur != main.c[i+1].couleur
                 && main.c[i].couleur != main.c[i+2].couleur
                 && main.c[i].couleur != main.c[i+3].couleur
+                && main.c[i+1].couleur != main.c[i+2].couleur
                 && main.c[i+1].couleur != main.c[i+3].couleur
-                && main.c[i+2].couleur != main.c[i+3].couleur
-                && main.c[i+1].couleur != main.c[i+2].couleur){
+                && main.c[i+2].couleur != main.c[i+3].couleur){
                     for(int j = 0; j < 4; ++j){
                         tri.comb_f[tri.taille_a].c[j] = main.c[i+j];
                         main.c[i+j].use = true;
                     }
+                    tri.comb_f[tri.taille_a].taille_c = 4;
                     ++tri.taille_a;
                 }
             }
         }
     }
-    while(check_brelan(main) == true){
+    // Vérifier et stocker les brelans
+    while(check_brelan(main)){
+        trier_main(main);
         for(int i = 0; i < 13; ++i){
             if(main.c[i].use == false && main.c[i+1].use == false && main.c[i+2].use == false){
                 if(main.c[i].valeur == main.c[i+1].valeur 
@@ -252,33 +239,38 @@ tri organiser_main(hand &main){
                         tri.comb_f[tri.taille_a].c[j] = main.c[i+j];
                         main.c[i+j].use = true;
                     }
+                    tri.comb_f[tri.taille_a].taille_c = 3;
                     ++tri.taille_a;
                 }
             }
         }
     }
-    while(check_suite(main) == true){
+
+    // Vérifier et stocker les suites
+    while(check_suite(main)){
         trier_main(main); 
         for(int i = 0; i < 13; ++i){
-            if(main.c[i].valeur == main.c[i+1].valeur - 1 && main.c[i].couleur == main.c[i+1].couleur && main.c[i].use == false && main.c[i+1].use == false){
+            if(main.c[i].use == false){
                 int count = 1;
                 int j = i;
-                while(main.c[j].valeur == main.c[j+1].valeur - 1 && main.c[j].couleur == main.c[j+1].couleur 
-                && main.c[j].use == false && main.c[j+1].use == false){
-                    ++count;
-                    ++j;
+                while(main.c[j].use == false && j < 14 && main.c[j].valeur == main.c[j+1].valeur - 1 && main.c[j].couleur == main.c[j+1].couleur){
+                    count++;
+                    j++;
                 }
                 if(count >= 3){
                     for(int k = 0; k < count; ++k){
                         tri.comb_f[tri.taille_a].c[k] = main.c[i+k];
                         main.c[i+k].use = true;
                     }
-                    tri.taille_a++;
+                    tri.comb_f[tri.taille_a].taille_c = count;
+                    ++tri.taille_a;
                 }
             }
         }
     }
-    while(check_paire(main) == true){
+
+    // Vérifier et stocker les paires
+    while(check_paire(main)){
         trier_main(main);
         for(int i = 0; i < 14; ++i){
             if(main.c[i].use == false && main.c[i+1].use == false){
@@ -292,7 +284,9 @@ tri organiser_main(hand &main){
             }
         }
     }
-    while(check_paire_suite(main) == true){
+
+    // Vérifier et stocker les paires en suite
+    while(check_paire_suite(main)){
         trier_main(main);
         for(int i = 0; i < 14; ++i){
             if(main.c[i].use == false && main.c[i+1].use == false){
@@ -305,13 +299,16 @@ tri organiser_main(hand &main){
                 }
             }
         }
-        
     }
+
+    // Stocker les cartes non utilisées
     for(int i = 0; i < 15; ++i){
         if(main.c[i].use == false){
             tri.non_comb[index] = main.c[i];
             ++index;
         }
     }
+
     return tri;
 }
+
