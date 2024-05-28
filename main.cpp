@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 
-
+///Fonction qui affiche les mains de tous les joueurs
 void affiche_toutes_mains(int nb_joueurs, hand * ens_main){
     for(int i = 0; i < nb_joueurs; ++i){
         std::cout << "\n Main n° " << i+1 << "\n";
@@ -14,6 +14,7 @@ void affiche_toutes_mains(int nb_joueurs, hand * ens_main){
     }
 }
 
+///Affiche une main avec ses combinaisons et les cartes non utilisées.
 void affiche_une_main(tri tri, hand &main){
     for(int i = 0; i < 14; ++i){
         std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
@@ -46,7 +47,7 @@ void affiche_une_main(tri tri, hand &main){
 }
 
 
-
+///Affiche une main complète avec ses combinaisons et les cartes non utilisées.
 void affiche_une_main_complete(tri tri, hand & main){
     for(int i = 0; i < 15; ++i){
         std::cout << "(" << i << ") " << main.c[i].valeur << " " << main.c[i].couleur << " | ";
@@ -79,6 +80,7 @@ void affiche_une_main_complete(tri tri, hand & main){
     }
 }
 
+///Échange deux cartes dans une main.
 void echange (hand & main, int x, int y)
 {
 	carte z = main.c[x];
@@ -86,6 +88,7 @@ void echange (hand & main, int x, int y)
     main.c[y] = z;
 }
 
+///Trie les cartes dans une main par valeur.
 void trier_main (hand & main)
 {
 	for (int i = 13; i > 0; --i)
@@ -98,6 +101,7 @@ void trier_main (hand & main)
 	}
 }
 
+///Trie les cartes dans une main complète par valeur.
 void trier_main_14 (hand & main)
 {
 	for (int i = 14; i > 0; --i)
@@ -110,6 +114,7 @@ void trier_main_14 (hand & main)
 	}
 }
 
+///Vérifie si une main contient un brelan.
 bool check_brelan(hand main){
     for(int i = 0; i < 14; ++i){
         int count = 1;
@@ -127,6 +132,7 @@ bool check_brelan(hand main){
     return false;
 }
 
+///Vérifie si une main contient un carré.
 bool check_carre(hand main){
     for(int i = 0; i < 14; ++i){
         int count = 1;
@@ -144,11 +150,15 @@ bool check_carre(hand main){
     return false;
 }
 
+///Vérifie si une main contient une suite.
 bool check_suite(hand main){
     trier_main(main);
     int count = 1;
-    for(int i = 0; i <= 11; ++i){
-        if(main.c[i].valeur == main.c[i+1].valeur - 1 && main.c[i].couleur == main.c[i+1].couleur && main.c[i].use == false && main.c[i+1].use == false){
+    for(int i = 0; i < 13; ++i){
+        if(main.c[i].valeur == main.c[i+1].valeur - 1 
+        && main.c[i].couleur == main.c[i+1].couleur 
+        && main.c[i].use == false 
+        && main.c[i+1].use == false){
             count++;
             if(count >= 3){
                 return true;
@@ -160,6 +170,7 @@ bool check_suite(hand main){
     return false;
 }
 
+///Vérifie si une main contient une paire en suite.
 bool check_paire_suite(hand main){
     trier_main(main);
     int count = 1;
@@ -178,6 +189,7 @@ bool check_paire_suite(hand main){
     return false;
 }
 
+///Vérifie si une main contient une paire.
 bool check_paire(hand main){
     int count = 1;
     for(int i = 0; i < 14; ++i){
@@ -195,6 +207,7 @@ bool check_paire(hand main){
     return false;
 }
 
+///Organise une main en identifiant et en stockant les combinaisons possibles.
 tri organiser_main(hand &main){
     trier_main(main);
     tri tri;
@@ -312,6 +325,7 @@ tri organiser_main(hand &main){
     return tri;
 }
 
+///Vérifie si un joueur a gagné avec une main de 14 cartes.
 bool gagne14(hand main, tri tri){
     if(tri.taille_b == 0){
         for(int i = 0; i < 14; ++i){
@@ -322,6 +336,7 @@ bool gagne14(hand main, tri tri){
     return false;
 }
 
+///Vérifie si un joueur a gagné avec une main de 15 cartes.
 bool gagne15(hand main, tri tri){
     if(tri.taille_b == 0){
         for(int i = 0; i < 15; ++i){

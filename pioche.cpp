@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <string>
 
+///Cette fonction génère un jeu de cartes en remplissant la pioche avec 
+///2 cartes de chaque couleur (coeur, carreau, trèfle, pique) pour chaque valeur allant de 1 à 13.
 void generer_jeu(pioche & p){
     std::string couleur[] = {"♥", "♦", "♠", "♣"};
     int n = 0;
@@ -24,6 +26,7 @@ void generer_jeu(pioche & p){
     }*/
 }
 
+///Cette fonction distribue aléatoirement 14 cartes à chaque joueur parmi les cartes de la pioche. 
 hand * distribue(int nb_joueurs, pioche & p){
     hand * ens_main = new hand[nb_joueurs];
     for(int i = 0; i < nb_joueurs; ++i){  
@@ -39,6 +42,7 @@ hand * distribue(int nb_joueurs, pioche & p){
     return ens_main;
 }
 
+///Cette fonction permet à un joueur de tirer une carte de la pioche.
 void tirer(hand & main, pioche & p1){
     int a = rand() % 104;
     while(p1.c[a].verif_d != true){
