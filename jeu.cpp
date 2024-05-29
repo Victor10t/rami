@@ -51,6 +51,8 @@ int main(){
             }
             ///Sinon on affiche sa main et on lui demande quelle carte il veut défausser 
             affiche_une_main_complete(tab_tri, ens_main[j]);
+            carte sugg = suggerer_carte(ens_main[j], tab_tri);
+            std::cout << "\nCarte suggérée : " << sugg.valeur << " de " << sugg.couleur << "\n"; 
             std::cout << "Entrez le n° de la carte que vous voulez defausser (0...14) :\n";
             std::cin >> num_carte;
             while(num_carte > 14 or num_carte < 0){

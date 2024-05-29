@@ -49,4 +49,4 @@ void trier_main_14 (hand & main);
 tri organiser_main(hand &main);
 bool gagne14(hand main, tri tri);
 bool gagne15(hand main, tri tri);
-
+carte suggerer_carte(hand main, tri tri);

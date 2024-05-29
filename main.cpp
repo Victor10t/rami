@@ -54,7 +54,6 @@ void affiche_une_main_complete(tri tri, hand & main){
     }
     std::cout << "\n Tab combinaison :\n";
     for(int i = 0; i < tri.taille_a; ++i){
-        std::cout << "\n taille_c : " << tri.comb_f[i].taille_c << "\n";
         for(int j = 0; j < tri.comb_f[i].taille_c; ++j){
             std::cout << tri.comb_f[i].c[j].valeur << " " << tri.comb_f[i].c[j].couleur << " | ";
         }
@@ -345,4 +344,11 @@ bool gagne15(hand main, tri tri){
         return true;
     }
     return false;
+}
+
+carte suggerer_carte(hand main, tri tri){
+    for(int i = 0; i < 15; ++i){
+        if(main.c[i].use == false) return main.c[i];
+    }
+    return tri.presque_comb[0].c[0];
 }
