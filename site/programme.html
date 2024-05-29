@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Programme" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./rami.css">
+    <title>Programme</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="rami.html">Accueil</a>
+        <div class="dropdown">
+            <button class="dropbtn">Programme 
+            </button>
+            <div class="dropdown-content">
+                <a href="programme.html">Idées Générales</a>
+                <a href="programme-detail.html">Détails du Programme</a>
+            </div>
+        </div> 
+        <a href="groupe.html">Groupe</a>
+    </div>
+
+    <div class="content">
+        <h1>Idées Générales</h1>
+       
+    <div class="partie">
+        <h2>Définir les bases de notre jeu</h2>
+        <p>Avant de commencer, nous nous sommes d'abord demandés quelles allaient être les bases de notre jeu ? De quoi allions-nous avoir besoin tout au long du développement ?
+        <br>Nous allons donc commencer par définir les classes et les méthodes nécessaires pour implémenter notre jeu de Rami.</p>
+        <p>Voici les classes que nous allons créer :</p>
+        <ul>
+            <li><b>Carte</b> : représente une carte du jeu.</li>
+            <li><b>Pioche</b> : représente les cartes du jeu</li> 
+            <li><b>Main</b> : représente les cartes en main des joueurs</li> 
+            <li><b>Défausse</b> : représente les cartes que contient la défausse</li> 
+        </ul>
+        <p>Maintenant que nous avons mit en place tout cela, nous allons pouvoir générer notre jeu/nos cartes et ainsi créer la pioche qui sera composée des 104 cartes que nous auront généré (dans un premier temps)</p>
+        <p>Une fois que nous avons notre jeu de cartes (notre pioche) de prêt, il ne nous reste plus qu'à distribuer les cartes à chaque joueur et la phase d'initialisation sera terminée </p>
+       
+    </div>
+
+    <div class="espace"></div>
+
+    <div class="partie">
+        <h2>Déroulement du jeu</h2>
+        <p>Une fois que les cartes ont été distribuées, le jeu commence. Voici comment se déroule un tour de jeu :</p>
+        <ul>
+            <li>Le joueur actif pioche une carte de la pioche ou de la défausse.</li>
+            <li>Le joueur actif défausse une carte de sa main.</li>
+            <li>Le joueur suivant devient le joueur actif.</li>
+        </ul>
+        
+        <p>De plus, pour rendre le jeu plus clair pour l'utilisateur, nous avons ajouté plusieurs autres éléments :</p>
+        <ul>
+            <li>Numération des cartes dans la main (commençant à 0) pour faciliter le choix de la carte à défausser</li>
+            <li>Un tri par valeur des cartes dans la main</li>
+            <li>Des tableaux de combinaison et de demi-combinaison généré automatiquement pour faciliter le choix 
+                de l'utilisateur dans un premier temps, et ceux de "l'ordinateur" ensuite</li>
+            <li>Une suggestion automatique de la carte à défausser (qui pourra ensuite être utilisée par l'ordinateur lorsqu'il devra faire un choix)</li>
+            <li>Un affichage de la carte piochée, car étant donné que la main est directement triée par valeur on risque de ne pas remarquer quelle carte a été piochée</li>
+        </ul>
+    </div>
+
+    <div class="espace"></div>
+
+    <div class="partie">
+        <h2>Fin du jeu</h2>
+        <p>Le jeu se termine lorsqu'un joueur n'a plus de cartes en main, c'est-à-dire lorsque toutes les cartes en main ont une combinaison. 
+            À ce moment, les scores sont calculés en fonction des cartes restantes dans les mains des autres joueurs. Le joueur avec le score 
+            le plus bas gagne la partie.</p>
+    </div>
+
+    <div class="espace"></div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Marwa Jebahi, Victor Thomas</p>
+    </footer>
+</body>
+</html>

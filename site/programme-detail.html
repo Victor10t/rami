@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./rami.css">
+    <title>Détails</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="rami.html">Accueil</a>
+        <div class="dropdown">
+            <button class="dropbtn">Programme 
+            </button>
+            <div class="dropdown-content">
+                <a href="programme.html">Idées Générales</a>
+                <a href="programme-detail.html">Détails du Programme</a>
+            </div>
+        </div> 
+        <a href="groupe.html">Groupe</a>
+    </div>
+
+    <div class="content">
+        <h1>Programme en détail</h1>
+       
+    <div class="partie">
+        <h2>Définition des bases de notre jeu</h2>
+        <p>Maintenant que nous savons ce que nous devons implenter (voir idées générales), nous allons pouvoir commencer à appliquer nos idées en langage informatique, en l'occurence ici C++.</p>
+
+        <p><b>Carte</b> : représente une carte du jeu.</p>
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/carte.h" target="_blank">Lien vers la struct carte</a>
+        <ul>
+            <li>Pour définir une carte, nous avons besoin de sa valeur ainsi que son motif (coeur, carreau, pique ou trefle).</li>
+            <li>Le bool verif_d sert à vérifier si la carte à été distribué ou non (donc si elle est dans une main ou dans la pioche)</li>
+            <li>Enfin, le bool use sert à vérifier si la carte est dans une combinaison ou pair de combinaison, dans ce cas elle sera considérée comme utilisée</li>
+        </ul>
+
+        <br>
+        <p><b>Pioche</b> : représente les cartes du jeu</p> 
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/pioche.h" target="_blank">Lien vers la struct pioche</a>
+        <ul>
+            <li>La pioche est un tableau de cartes qui contient toutes les cartes du jeu, ici nous avons donc 104 cartes</li>
+            </ul>
+
+        <br>
+        <p><b>Main</b> : représente les cartes en main des joueurs</p> 
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/main.h" target="_blank">Lien vers la struct main (voir ligne 5 à 9)</a>
+        <ul>
+            <li>La main est un tableau de cartes qui contient les cartes que le joueur a en main</li>
+           </ul>
+
+        <br>
+        <p><b>Défausse</b> : représente les cartes que contient la défausse</p> 
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/defausse.h" target="_blank">Lien vers la liste chaînée defausse</a>
+        <ul>
+            <li>La défausse est une liste chainées de cartes qui contient les cartes que les joueurs ont défaussées. Nous avons décidé ici de faire une liste chainées car dans une défausse, nous avons seulement besoin de sa première carte.</li>
+           </ul>
+        <br>
+        <p>La procédure generer_jeu est utilisée pour générer un jeu de cartes complet. Voici comment elle fonctionne :</p>
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/pioche.cpp" target="_blank">Lien vers la procédure generer_jeu (voir ligne 7 à 21)</a>
+        <ul>
+            <li>Elle utilise deux boucles for imbriquées pour générer toutes les combinaisons de couleurs et de valeurs. 
+                La boucle externe parcourt les quatre couleurs, et la boucle interne parcourt les valeurs de 1 à 13 
+                (ce qui correspond aux valeurs possibles pour une carte dans un jeu de cartes traditionnel).</li>
+            <li>Pour chaque combinaison de couleur et de valeur, elle crée une nouvelle carte c_actu, lui attribue la couleur et la valeur actuelles, 
+                et l'ajoute à la pioche deux fois (ce qui correspond à un jeu de cartes complet avec deux jeux de 52 cartes, pour au fianl avoir un jeu de 104 cartes).</li>
+            <li>Cette procédure génère donc un jeu de cartes complet avec deux exemplaires de chaque carte, toutes marquées comme valides ou disponibles.</li>
+        </ul>
+        <br>
+
+        <p>En ce qui concerne la distribution, voici comment nous procédons ::</p>
+        <a href="https://github.com/Victor10t/rami/blob/36ec0e90662926d7e7d58f10e86e25779811ab96/pioche.cpp" target="_blank">Lien vers la fonction distribue (voir ligne 27 à 40)</a>
+        <p>La fonction distribue est utilisée pour distribuer des cartes à un certain nombre de joueurs à partir de la pioche :</p>
+        <ul>
+            <li>Elle crée un tableau dynamique ens_main de hand (qui représente une main de cartes) de taille nb_joueurs</li>
+            <li>Pour chaque joueur (boucle for sur i), elle distribue 14 cartes (boucle for sur j) en en prenant une aléatoirement dans la pioche (avec le random)</li>
+        </ul>
+        <br>
+    </div>
+
+    <div class="espace"></div>
+
+    <div class="partie">
+        <h2>Déroulement du jeu</h2>
+        <p>Une fois que les cartes ont été distribuées, le jeu commence. Voici comment se déroule un tour de jeu :</p>
+        <ul>
+            <li>Le joueur actif pioche une carte de la pioche ou de la défausse.</li>
+            <li>Le joueur actif défausse une carte de sa main.</li>
+            <li>Le joueur suivant devient le joueur actif.</li>
+        </ul>
+        <br>
+        <p>De plus, pour rendre le jeu plus clair pour l'utilisateur, nous avons ajouté plusieurs autres éléments :</p>
+        <ul>
+            <li>Numération des cartes dans la main (commençant à 0) pour faciliter le choix de la carte à défausser</li>
+            <li>Un tri par valeur des cartes dans la main</li>
+            <li>Des tableaux de combinaison et de demi-combinaison généré automatiquement pour faciliter le choix 
+                de l'utilisateur dans un premier temps, et ceux de "l'ordinateur" ensuite</li>
+        </ul>
+    </div>
+
+    <div class="espace"></div>
+
+    <div class="partie">
+        <h2>Fin du jeu</h2>
+        <p>Le jeu se termine lorsqu'un joueur n'a plus que des combinaisons de cartes en main. À ce moment, le jeu est arrêté et le joueur qui a terminé en premeir est concidéré comme gagant.</p>
+    </div>
+
+    <div class="espace"></div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Marwa Jebahi, Victor Thomas</p>
+    </footer>
+    
+</body>
+</html>

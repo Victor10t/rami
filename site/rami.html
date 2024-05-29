@@ -5,82 +5,63 @@
     <meta name="Index Rami" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./rami.css">
     <title>Rami</title>
+
 </head>
-<h1>Jeu de cartes Rami</h1>
 <body>
-    <h2>Règles du Rami</h2>
+    <div class="navbar">
+        <a href="rami.html">Accueil</a>
+        <div class="dropdown">
+            <button class="dropbtn">Programme 
+            </button>
+            <div class="dropdown-content">
+                <a href="programme.html">Idées Générales</a>
+                <a href="programme-detail.html">Détails du Programme</a>
+            </div>
+        </div> 
+        <a href="groupe.html">Groupe</a>
+    </div>
+
+
+
+<div class="content">
+    <h1>Jeu de cartes Rami</h1>
     <p>Le Rami est un jeu de cartes joué avec un jeu de 104 cartes. L'objectif du jeu est de former des ensembles et des suites de cartes et de se débarrasser de toutes ses cartes.</p>
-    <p>Voici les règles de base :</p>
-    <ul>
-        <li>Chaque joueur reçoit 14 cartes du jeu.</li>
-        <li>Les joueurs jouent à tour de rôle pour soit piocher une carte du jeu, soit prendre la carte du dessus de la pile de défausse.</li>
-        <li>Après avoir pris une carte, le joueur doit défausser une carte de sa main.</li>
-        <li>Les ensembles (brelans, carrés) sont formés en regroupant des cartes de même valeur, indépendamment de leur couleur.</li>
-        <li>Les suites sont formées en arrangeant des cartes de même couleur dans un ordre consécutif.</li>
-        <li>Un joueur peut également ajouter des cartes aux ensembles ou aux suites existantes sur la table.</li>
-        <li>Le jeu continue jusqu'à ce qu'un joueur n'ait plus de cartes en main.</li>
-        <li>À la fin du jeu, les joueurs calculent leurs scores en fonction des cartes restantes dans les mains de leurs adversaires.</li>
-        <li>Le joueur avec le score le plus bas gagne.</li>
-    </ul>
+    <div class="partie">
+        <h2>Règles du Rami</h2>
+        <p>Voici les règles de base :</p>
+        <ul>
+            <p>Chaque joueur reçoit 14 cartes du jeu.<br>
+            Les joueurs jouent à tour de rôle pour soit piocher une carte du jeu, soit prendre la carte du dessus de la pile de défausse.<br>
+            Après avoir pris une carte, le joueur doit défausser une carte de sa main.<br>
+            Les ensembles (brelans, carrés) sont formés en regroupant des cartes de même valeur, indépendamment de leur couleur.<br>
+            Les suites sont formées en arrangeant des cartes de même couleur dans un ordre consécutif.<br>
+            Le jeu continue jusqu'à ce qu'un joueur n'ait plus de cartes en main.<br>
+            À la fin du jeu, les joueurs calculent leurs scores en fonction des cartes restantes dans les mains de leurs adversaires.<br>
+            Le joueur avec le score le plus bas gagne.</p>
+        </ul>
+    </div>
 
-    <h2>Définir les bases de notre jeu</h2>
-    <p>Nous nous sommes d'abord demandés quelles allaient être les bases de notre jeu ? 
-    <br>Nous allons donc commencer par définir les classes et les méthodes nécessaires pour implémenter le jeu de Rami.</p>
-    <p>Voici les classes que nous allons créer :</p>
+    <div class="espace"></div>
 
-    <p><b>Carte</b> : représente une carte du jeu.</p>
-    <img src="./structcarte.png" alt="struct carte" style="width: 150px">
-    <ul>
-        <li>Pour définir une carte, nous avons besoin de sa valeur ainsi que son motif (coeur, carreau, pique ou trefle).</li>
-        <li>Le tab_match, lui, est un tableau constitué de toutes les cartes avec lesquelles la carte peut avoir une combinaison.</li>
-        <li>Enfin, le bool verif_d sert à vérifier si la carte à été distribué ou non (donc si elle est dans une main ou dans la pioche)</li>
-    </ul>
+    <div class="partie">
+        <h2>But du projet</h2>
+        <p>Le but de ce projet est de développer un jeu de Rami en C++ de deux manières différentes :</p>
+        <ol>
+            <li>Une version manuelle avec des vraies joueurs qui jouent sur la console</li>
+            <li>Une version automatique où l'ordinateur joue contre lui-même</li>
+        </ol>
+        <p>Pour ce faire, nous allons d'abord commencer par la version la plus simple, qui est la version manuelle, afin d'implémenter les bases de notre jeu.<br>
+        Ensuite, nous pourrons ajouter des fonctionnalités supplémentaires pour la version automatique.</p>
+    </div>
 
-    <br>
-    <p><b>Pioche</b> : représente les cartes du jeu</p> 
-    <img src="./structpioche.png" alt="struct pioche" style="width: 150px">
-    <ul>
-        <li>La pioche est un tableau de cartes qui contient toutes les cartes du jeu.</li>
-        <li>La méthode piocher() permet de piocher une carte aléatoire dans la pioche.</li>
-        <li>La méthode melanger() permet de mélanger les cartes de la pioche.</li>
-    </ul>
+    <div class="espace"></div>
 
-    <br>
-    <p><b>Main</b> : représente les cartes en main des joueurs</p> 
-    <img src="./structmain.png" alt="struct main" style="width: 150px">
-    <ul>
-        <li>La main est un tableau de cartes qui contient les cartes que le joueur a en main.</li>
-        <li>La méthode piocher() permet de piocher une carte dans la pioche et de l'ajouter à la main du joueur.</li>
-        <li>La méthode defausser() permet de défausser une carte de la main du joueur.</li>
-    </ul>
+</div>
 
-    <br>
-    <p><b>Défausse</b> : représente les cartes que contient la défausse</p> 
-    <img src="./structdefausse.png" alt="struct defausse" style="width: 150px">
-    <ul>
-        <li>La défausse est une liste chainées de cartes qui contient les cartes que les joueurs ont défaussées. Nous avons décidé ici de faire une liste chainées car dans une défausse, nous avons seulement besoin de sa première carte.</li>
-        <li>(ajouter ici ce qui utilise la défausse)</li>
-    </ul>
 
-    <p>La procédure generer_jeu est utilisée pour générer un jeu de cartes complet. Voici comment elle fonctionne :</p>
-    <img src="./generer_jeu.png" alt="Procédure generer_jeu" style="width: 450px">
-    <ul>
-        <li>Elle utilise deux boucles for imbriquées pour générer toutes les combinaisons de couleurs et de valeurs. 
-            La boucle externe parcourt les quatre couleurs, et la boucle interne parcourt les valeurs de 1 à 13 
-            (ce qui correspond aux valeurs possibles pour une carte dans un jeu de cartes traditionnel).</li>
-        <li>Pour chaque combinaison de couleur et de valeur, elle crée une nouvelle carte c_actu, lui attribue la couleur et la valeur actuelles, 
-            et l'ajoute à la pioche deux fois (ce qui correspond à un jeu de cartes complet avec deux jeux de 52 cartes, pour au fianl avoir un jeu de 104 cartes).</li>
-        <li>Cette procédure génère donc un jeu de cartes complet avec deux exemplaires de chaque carte, toutes marquées comme valides ou disponibles.</li>
-    </ul>
-    <br>
-
-    <p>Maintenant que nous avons notre jeu de cartes (notre pioche) de prêt, il ne nous reste plus qu'a distribuer les cartes à chaque joueur et la phase d'initialisation sera terminée :</p>
-    <img src="./distribue.png" alt="Procédure distribue" style="width: 550px">
-    <p>La fonction distribue est utilisée pour distribuer des cartes à un certain nombre de joueurs à partir de la pioche. Voici comment elle fonctionne :</p>
-    <ul>
-        <li>Elle crée un tableau dynamique ens_main de hand (qui représente une main de cartes) de taille nb_joueurs</li>
-        <li>Pour chaque joueur (boucle for sur i), elle distribue 14 cartes (boucle for sur j) en en prenant une aléatoirement dans la pioche (avec le random)</li>
-    </ul>
 
 </body>
+<footer>
+    <p>&copy; 2024 Marwa Jebahi, Victor Thomas</p>
+</footer>
 </html>
